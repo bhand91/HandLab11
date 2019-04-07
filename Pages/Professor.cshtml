@@ -1,0 +1,18 @@
+@page
+@model ProfessorModel
+@{
+    ViewData["Title"] = "Professor Page";
+}
+
+<h3>Professor Page</h3>
+<hr />
+
+<form asp-action = "Index" asp-controller = "Form"method = "post">
+<label class="control-label"></label>
+<select asp-items="Model.ProfessorDropDown" class="form-control">
+    <option value="">-- Select Professor --</option>
+</select>
+<div class = "form-group">
+        <input type = "submit" value = "Submit" class = "btn btn-primary" name = "FirstName" />
+    </div>
+    </form>

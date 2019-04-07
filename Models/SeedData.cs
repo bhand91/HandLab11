@@ -9,9 +9,9 @@ namespace HandLab11.Models
     {
     public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new ProfessorDbContext(serviceProvider.GetRequiredService<DbContextOptions<BlogDbContext>>()))
+            using (var context = new ProfessorDbContext(serviceProvider.GetRequiredService<DbContextOptions<ProfessorDbContext>>()))
             {
-                // Look for any blogs.
+                // Look for any professors.
                 if (context.Professor.Any())
                 {
                     return; // DB has been seeded
@@ -41,5 +41,7 @@ namespace HandLab11.Models
                 );
                 
                 context.SaveChanges();
-            }    }
+            }    
+        }
+    }
 }
