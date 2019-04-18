@@ -16,17 +16,17 @@
     </p>
 }
 
-@foreach (var c in Model.Professors.Courses)
+@foreach (var p in Model.Professors)
 {
-    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Professors.Courses)</dt>
-    <dd class="col-sm-1">@Html.DisplayFor(model => c.Description)</dd>
-    <dt class="col-sm-9">
-    <form method="post">
-        <input type="hidden" asp-for="CourseIdToDelete" value="@c.ID" />
-        <input type="submit" asp-page-handler="DeleteCourse" value="Delete Course" class="btn btn-danger btn-sm" />
-    </form>
-    </dt>
+    @foreach (var c in p.Courses)
+    {
+        <dt class="col-sm-2">Course: </dt>
+        <dd class="col-sm-1">@Html.DisplayFor(model => c.Description)</dd>
+        <dt class="col-sm-9">
+        <form method="post">
+        
+        </form>
+        </dt>
+    }
 }
-}
-
 

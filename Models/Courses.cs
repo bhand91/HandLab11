@@ -10,8 +10,7 @@ namespace HandLab11.Models
         public int CourseID {get; set;}
         public string Description {get; set;}
 
-        public int 
-        ProfessorId {get; set;} //FK
+        public int ProfessorId {get; set;} //FK
 
         public Professor Professor {get; set;} //Navigation
 
