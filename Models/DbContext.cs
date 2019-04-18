@@ -9,5 +9,8 @@ namespace HandLab11.Models
 
 		}	
 	public DbSet<Professor> Professor{get; set;}
+
+	public DbSet<Course> Course {get; set;}
+
 	}
 }

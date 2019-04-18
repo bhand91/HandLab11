@@ -1,5 +1,7 @@
 using System;
-using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace HandLab11.Models
 {
@@ -7,9 +9,11 @@ namespace HandLab11.Models
     {
         public int ProfessorId {get; set;}
 
-        [BindProperty]
+    
         public string FirstName {get; set;}
 
         public string LastName {get; set;}
+
+        public List<Course> Courses {get; set;} //Navigation
     }
 }

@@ -31,21 +31,6 @@ namespace HandLab11.Pages
 
         public string CurrentSort {get; set;}
 
-        
-        public async Task OnGetAsync(string sortOrder)
-        {
-            var query = _context.Professor.Select(p =>p);
-
-            namesort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-
-            query = query.OrderByDesc(p => p.FirstName);
-        }
-        public async Task OnGetAsync(string sortOrder, string CurrentFilter, string searchString, int? pageIndex)
-        {
-            CurrentSort = sortOrder;
-            namesort = String
-            skip((PageNum - 1)*PageSize).Take(PageSize).ToListAs
-        }
 
         public void OnGet()
         {

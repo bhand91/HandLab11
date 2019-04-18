@@ -8,11 +8,25 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
 @foreach(var p in Model.Professors)
 {
     <p>@p.FirstName
         @p.LastName
     </p>
+}
+
+@foreach (var c in Model.Professors.Courses)
+{
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Professors.Courses)</dt>
+    <dd class="col-sm-1">@Html.DisplayFor(model => c.Description)</dd>
+    <dt class="col-sm-9">
+    <form method="post">
+        <input type="hidden" asp-for="CourseIdToDelete" value="@c.ID" />
+        <input type="submit" asp-page-handler="DeleteCourse" value="Delete Course" class="btn btn-danger btn-sm" />
+    </form>
+    </dt>
+}
 }
 
 
