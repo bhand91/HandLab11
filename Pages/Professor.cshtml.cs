@@ -25,11 +25,10 @@ namespace HandLab11.Pages
         public void OnGet()
         {
             // Get list of Professors
-            Professors = _context.Professor.ToList();
+            Professors = _context.Professor.Include(p => p.Courses).ToList();
 
-            
-
-            ProfessorDropDown = new SelectList(Professors, "ProfessorId", "Concat");
+    
+            ProfessorDropDown = new SelectList(Professors);
         }
         public void ButtonClick()
         {

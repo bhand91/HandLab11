@@ -9,24 +9,32 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-@foreach(var p in Model.Professors)
-{
-    <p>@p.FirstName
-        @p.LastName
-    </p>
-}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-3">
+            @foreach(var p in Model.Professors)
+            {
+                <p>@p.FirstName
+                    @p.LastName
+                </p>
+            }
+        </div>
+        <div class = "col-6">
+            @foreach (var p in Model.Professors)
+            {
+                @foreach (var c in p.Courses)
+                {
+                    <dt class="col-sm-2">Course: </dt>
+                    <dd class="col-sm-1">@Html.DisplayFor(model => c.Description)</dd>
+                    <dt class="col-sm-9">
+                    <form method="post">
+                    
+                    </form>
+                    </dt>
+                }
+            }
+        </div>
+    </div>
+</div>
 
-@foreach (var p in Model.Professors)
-{
-    @foreach (var c in p.Courses)
-    {
-        <dt class="col-sm-2">Course: </dt>
-        <dd class="col-sm-1">@Html.DisplayFor(model => c.Description)</dd>
-        <dt class="col-sm-9">
-        <form method="post">
-        
-        </form>
-        </dt>
-    }
-}
 
