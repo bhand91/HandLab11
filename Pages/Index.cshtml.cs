@@ -22,17 +22,6 @@ namespace HandLab11.Pages
             _context = context;
         }
 
-        [BindProperty(SupportsGet = true)]
-        public int PageNum {get; set;} = 1;
-
-        public int PageSize {get; set;} = 10;
-
-        public string namesort {get; set;}
-
-        public string CurrentFilter {get; set;}
-
-        public string CurrentSort {get; set;}
-
         public void OnGet()
         {
             Professors = _context.Professor.Include(p => p.Courses).ToList();

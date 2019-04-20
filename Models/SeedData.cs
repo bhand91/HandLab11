@@ -51,18 +51,7 @@ namespace HandLab11.Models
                     new Professor
                     {
                         FirstName = "John",
-                        LastName = "Frink Jr.",
-                        Courses = new List<Course> {
-                            new Course {Description = "Chemistry"},
-                            new Course {Description = "Science"},
-                            new Course {Description = "Art"}
-                        }
-                    },
-
-                    new Professor
-                    {
-                        FirstName = "No",
-                        LastName = "Courses"
+                        LastName = "Frink Jr."
                     }
                 );
                 

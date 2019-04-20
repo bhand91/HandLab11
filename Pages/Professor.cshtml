@@ -7,12 +7,57 @@
 <h3>Professor Page</h3>
 <hr />
 
-<form asp-action = "Index" asp-controller = "Form"method = "post">
-<label class="control-label"></label>
-<select asp-items="Model.Professors" class="form-control">
-    <option value="">-- Select Professor --</option>
-</select>
-<div class = "form-group">
-        <input type = "submit" value = "Submit" class = "btn btn-primary" name = "FirstName" />
+<P> List of Professors: </P>
+
+<form asp-page = "./Professor" method = "get">
+    <div class = "form-actions no-color">
+        <p>
+            <select asp-items="Model.ProfessorDropDown" class = "form-control">
+                <option value="">All</option>
+            </select>
+            <input type = "text" name ="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Select" class="btn btn-default" />
+        </p>
     </div>
-    </form>
+</form>
+<table class = "table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Professor" asp-route-sortOrder="@Model.NameSort">
+                @Html.DisplayNameFor(model => model.Professors[0].LastName)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professors[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Professors[0].Courses)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Professors)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                        @foreach (var c in item.Courses)
+                        {
+                            <dd class="col-lg-1">@Html.DisplayFor(model => c.Description)</dd>
+                            <dt class="col-sm-9">
+                            <form method="post">
+                            
+                            </form>
+                            </dt>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
