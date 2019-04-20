@@ -12,8 +12,9 @@
 <form asp-page = "./Professor" method = "get">
     <div class = "form-actions no-color">
         <p>
+            Professor:
             <select asp-items="Model.ProfessorDropDown" class = "form-control">
-                <option value="">All</option>
+                <option value="">--Select Professor--</option>
             </select>
             <input type = "text" name ="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Select" class="btn btn-default" />
