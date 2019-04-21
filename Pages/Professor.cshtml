@@ -11,7 +11,7 @@
 <form>
     <p>
         <select asp-for= "Prof" asp-items="Model.ProfessorDropDown">
-            <options value="">All</options>
+            <options value="">--Select Professor--</options>
         </select>
         Course: <input type ="text" asp-for="SearchString" />
 
@@ -30,7 +30,10 @@
                 </a>
             </th>
             <th>
+                <a asp-page="./Professor" asp-route-sortOrder="@Model.NameSort"
+                asp-route-currentFilter="@Model.CurrentFilter">
                 @Html.DisplayNameFor(model => model.Professors[0].FirstName)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Professors[0].Courses)
@@ -48,6 +51,19 @@
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
+                    @{
+                if(item.Courses.Count > 0)
+                {
+                    foreach (var c in item.Courses)
+                    {
+                        <li>@Html.DisplayFor(model => c.Description)</li>
+                    }
+                }
+                else
+                {
+                    <span>This professor doesn't have courses</span>
+                }
+            }
                 </td>
             </tr>
         }

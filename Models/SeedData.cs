@@ -25,7 +25,7 @@ namespace HandLab11.Models
                         LastName = "McGonagall",
                         Courses = new List<Course> {
                             new Course {Description = "English"},
-                            new Course {Description = "Gym"}
+                            new Course {Description = "Transfiguration"}
                         }
 
                     },

@@ -6,35 +6,21 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Learn about <a href=".\Professor">View Professors and Courses</a>.</p>
 </div>
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-3">
+        <div class = "col-9">
             @foreach(var p in Model.Professors)
             {
-                <p>@p.FirstName
+                <li>@p.FirstName
                     @p.LastName
-                </p>
-            }
-        </div>
-        <div class = "col-6">
-            @foreach (var p in Model.Professors)
-            {
-                @foreach (var c in p.Courses)
-                {
-                    <dt class="col-sm-2">Course: </dt>
-                    <dd class="col-sm-1">@Html.DisplayFor(model => c.Description)</dd>
-                    <dt class="col-sm-9">
-                    <form method="post">
-                    
-                    </form>
-                    </dt>
-                }
+                </li>
             }
         </div>
     </div>
 </div>
+
 
 

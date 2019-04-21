@@ -93,7 +93,7 @@ namespace HandLab11.Pages
             int pageSize = 10;
 
             Professors = await PaginatedList<Professor>.CreateAsync(
-                professorQuery.AsNoTracking(), pageIndex ?? 1, pageSize);
+                professorQuery.Include(p=> p.Courses).AsNoTracking(), pageIndex ?? 1, pageSize);
         
         }
     }
