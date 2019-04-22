@@ -50,9 +50,10 @@ namespace HandLab11.Pages
 
             CurrentFilter = searchString;
 
-            var professors = _context.Professor.Include(p => p.Courses).Select( p => new {Display = $"{p.FirstName} {p.LastName}"});
-            //.Select(p => p);
-            
+            var professors = _context.Professor.Include(p => p.Courses).Select(p => p);
+
+            var professorsQuery = _context.Professor.Include(p => p.Courses).Select( p => new {ID = p.ProfessorId, Display = string.Format($"{p.FirstName} {p.LastName}")}).Select(p => p);
+
             var courses = _context.Course.Include(c => c.Professor).Select(c => c);
 
             if(!string.IsNullOrEmpty(SearchString))
@@ -60,23 +61,24 @@ namespace HandLab11.Pages
                 courses = courses.Where(c => c.Description.ToUpper().Contains(searchString));               
             }
 
-            IQueryable<Professor> professorQuery = from p in _context.Professor
-                                                    select p;
+        
+           // IQueryable<Professor> professorQuery = from p in _context.Professor
+                                                   // select p;
 
             if(!string.IsNullOrEmpty(Prof))
             {
-                professors = professors.Where(x => x.Display == Prof);
+                professors = professors.Where(x => x.ProfessorId.ToString() == Prof);
             }
 
-            ProfessorDropDown = new SelectList (await professors.Distinct().ToListAsync());
+            ProfessorDropDown = new SelectList (await professorsQuery.Distinct().ToListAsync(), "ID", "Display");
             
             switch (sortOrder)
             {
                 case "name_desc":
-                    professorQuery = professorQuery.OrderByDescending(p => p.LastName);
+                    professors = professors.OrderByDescending(p => p.LastName);
                     break;
                 default:
-                    professorQuery = professorQuery.OrderBy(p => p.LastName);
+                    professors = professors.OrderBy(p => p.LastName);
                     break;
             }
             
@@ -93,7 +95,7 @@ namespace HandLab11.Pages
             int pageSize = 10;
 
             Professors = await PaginatedList<Professor>.CreateAsync(
-                professorQuery.Include(p=> p.Courses).AsNoTracking(), pageIndex ?? 1, pageSize);
+                professors.Include(p=> p.Courses).AsNoTracking(), pageIndex ?? 1, pageSize);
         
         }
     }

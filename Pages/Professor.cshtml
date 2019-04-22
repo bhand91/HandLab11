@@ -11,9 +11,8 @@
 <form>
     <p>
         <select asp-for= "Prof" asp-items="Model.ProfessorDropDown">
-            <options value="">--Select Professor--</options>
+            <option value="">--All Professors--</option>
         </select>
-        Course: <input type ="text" asp-for="SearchString" />
 
         <input type="submit" value = "Filter" />
     </p>
@@ -73,7 +72,7 @@
 
 @{
     var prevDisabled = !Model.Professors.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.Professors.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Professors.HasNextPage ? "disabled" : "";
 }
 
 <div align = "center"></div>
@@ -85,9 +84,17 @@
         &larr; Previous
 </a>
 
+<a asp-page="./Professor"
+    asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.Professors.PageIndex )"
+    asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-default @nextDisabled">
+        @Model.Professors.PageIndex
+</a>
+
 <a asp-page=".\Professor"
     asp-route-sortOrder = "@Model.CurrentSort"
-    asp-route-pageIndex = "@(Model.Professors.PageIndex+1)"
+    asp-route-pageIndex = "@(Model.Professors.PageIndex + 1)"
     asp-route-currentFilter="@Model.CurrentFilter"
     class="btn btn-default @nextDisabled">
         Next&rarr; 
